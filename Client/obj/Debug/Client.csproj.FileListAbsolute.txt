@@ -1,0 +1,8 @@
+D:\Epitech\cardGames\cardGames\bin\Debug\Client.exe
+D:\Epitech\cardGames\cardGames\bin\Debug\Client.exe.config
+D:\Epitech\cardGames\cardGames\bin\Debug\NetworkCommsDotNet.dll
+D:\Epitech\cardGames\cardGames\obj\Debug\Client.csproj.CoreCompileInputs.cache
+D:\Epitech\cardGames\cardGames\obj\Debug\Client.exe
+D:\Epitech\cardGames\cardGames\obj\Debug\Client.pdb
+D:\Epitech\cardGames\cardGames\bin\Debug\Client.pdb
+D:\Epitech\cardGames\cardGames\obj\Debug\Client.csprojResolveAssemblyReference.cache

@@ -1,0 +1,16 @@
+D:\Epitech\cardGames\ConsoleApp3\bin\Debug\Serveur.exe.config
+D:\Epitech\cardGames\ConsoleApp3\bin\Debug\Serveur.exe
+D:\Epitech\cardGames\ConsoleApp3\bin\Debug\NetworkCommsDotNet.dll
+D:\Epitech\cardGames\ConsoleApp3\obj\Debug\Serveur.csproj.CoreCompileInputs.cache
+D:\Epitech\cardGames\ConsoleApp3\obj\Debug\Serveur.exe
+D:\Epitech\cardGames\ConsoleApp3\obj\Debug\Serveur.pdb
+D:\Epitech\cardGames\ConsoleApp3\bin\Debug\Serveur.pdb
+D:\Epitech\cardGames\ConsoleApp3\obj\Debug\Serveur.csprojResolveAssemblyReference.cache
+D:\Epitech\cardGames\Serveur\bin\Debug\Serveur.exe.config
+D:\Epitech\cardGames\Serveur\bin\Debug\Serveur.exe
+D:\Epitech\cardGames\Serveur\bin\Debug\Serveur.pdb
+D:\Epitech\cardGames\Serveur\bin\Debug\NetworkCommsDotNet.dll
+D:\Epitech\cardGames\Serveur\obj\Debug\Serveur.csprojResolveAssemblyReference.cache
+D:\Epitech\cardGames\Serveur\obj\Debug\Serveur.csproj.CoreCompileInputs.cache
+D:\Epitech\cardGames\Serveur\obj\Debug\Serveur.exe
+D:\Epitech\cardGames\Serveur\obj\Debug\Serveur.pdb
