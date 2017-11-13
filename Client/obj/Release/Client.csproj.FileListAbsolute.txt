@@ -1,0 +1,9 @@
+D:\Epitech\cardGames\Client\bin\Release\Client.exe.config
+D:\Epitech\cardGames\Client\bin\Release\Client.exe
+D:\Epitech\cardGames\Client\bin\Release\Client.pdb
+D:\Epitech\cardGames\Client\bin\Release\NetworkCommsDotNet.dll
+D:\Epitech\cardGames\Client\bin\Release\protobuf-net.dll
+D:\Epitech\cardGames\Client\bin\Release\protobuf-net.xml
+D:\Epitech\cardGames\Client\obj\Release\Client.csproj.CoreCompileInputs.cache
+D:\Epitech\cardGames\Client\obj\Release\Client.exe
+D:\Epitech\cardGames\Client\obj\Release\Client.pdb

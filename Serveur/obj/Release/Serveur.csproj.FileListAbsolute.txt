@@ -1,0 +1,9 @@
+D:\Epitech\cardGames\Serveur\bin\Release\Serveur.exe.config
+D:\Epitech\cardGames\Serveur\bin\Release\Serveur.exe
+D:\Epitech\cardGames\Serveur\bin\Release\Serveur.pdb
+D:\Epitech\cardGames\Serveur\bin\Release\NetworkCommsDotNet.dll
+D:\Epitech\cardGames\Serveur\bin\Release\protobuf-net.dll
+D:\Epitech\cardGames\Serveur\bin\Release\protobuf-net.xml
+D:\Epitech\cardGames\Serveur\obj\Release\Serveur.csproj.CoreCompileInputs.cache
+D:\Epitech\cardGames\Serveur\obj\Release\Serveur.exe
+D:\Epitech\cardGames\Serveur\obj\Release\Serveur.pdb

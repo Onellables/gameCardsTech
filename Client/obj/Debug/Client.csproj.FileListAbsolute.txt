@@ -6,3 +6,13 @@ D:\Epitech\cardGames\cardGames\obj\Debug\Client.exe
 D:\Epitech\cardGames\cardGames\obj\Debug\Client.pdb
 D:\Epitech\cardGames\cardGames\bin\Debug\Client.pdb
 D:\Epitech\cardGames\cardGames\obj\Debug\Client.csprojResolveAssemblyReference.cache
+D:\Epitech\cardGames\Client\bin\Debug\Client.exe.config
+D:\Epitech\cardGames\Client\bin\Debug\Client.exe
+D:\Epitech\cardGames\Client\bin\Debug\Client.pdb
+D:\Epitech\cardGames\Client\bin\Debug\NetworkCommsDotNet.dll
+D:\Epitech\cardGames\Client\bin\Debug\protobuf-net.dll
+D:\Epitech\cardGames\Client\bin\Debug\protobuf-net.xml
+D:\Epitech\cardGames\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
+D:\Epitech\cardGames\Client\obj\Debug\Client.csproj.CoreCompileInputs.cache
+D:\Epitech\cardGames\Client\obj\Debug\Client.exe
+D:\Epitech\cardGames\Client\obj\Debug\Client.pdb

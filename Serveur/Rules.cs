@@ -40,7 +40,6 @@ namespace ServerApplication
                 System.Threading.Thread.Sleep(1000);
                 while (end == -1 && deck.Idx < 54)
                 {
-                    end = 2;
                     YourTurn(allPlayers[turn], server, allPlayers);
                     if (sense == '+')
                         turn = turn + 1;
@@ -164,9 +163,9 @@ namespace ServerApplication
             while (valid == 0)
             {
                 server.SendMessageToOne(player.Id, "Which color do you choose ?\nHearts ?\tClubs ?\tSpades ?\tDiamonds ?");
-                server.LastMessaged = null;
                 valid = 1;
-                while (server.LastMessaged == null)
+                server.LastPlayerId = null;
+                while (server.LastPlayerId == null || !(player.Id.ConnectionInfo.Equals(server.LastPlayerId.ConnectionInfo)))
                 { }
                 if (server.LastMessaged == "Hearts" || server.LastMessaged == "hearts")
                 {
@@ -208,25 +207,30 @@ namespace ServerApplication
             while (valid == 0)
             {
                 server.SendMessageToOne(player.Id, "clear");
+                System.Threading.Thread.Sleep(2000);
                 server.SendMessageToOne(player.Id, "It's your turn. The current card is : " + lastCard.SendValue());
                 player.hand.ShowHand(player.Id, server, this);
-                server.SendMessageToOne(player.Id, "Choose your card by entering the number to the left of the chosen card.");
-                server.LastMessaged = null;
-                while (server.LastMessaged == null)
+                server.SendMessageToOne(player.Id, "Choose your card by entering the number to the left of the chosen card or draw a card by typing \"draw\"");
+                server.LastPlayerId = null;
+                while (server.LastPlayerId == null || !(player.Id.ConnectionInfo.Equals(server.LastPlayerId.ConnectionInfo)))
                 { }
                 if (server.LastMessaged == "draw")
                     valid = 2;
                 else
                 {
-                    pos = int.Parse(server.LastMessaged);
-                    if (IsValidCard(hand[pos]))
+                    if (!(IsDigitsOnly(server.LastMessaged)) || (pos = int.Parse(server.LastMessaged)) >= hand.Length)
+                    {
+                        server.SendMessageToOne(player.Id, "Error : Not a valid number. The answer must be a number between 0 and " + hand.Length.ToString());
+                        System.Threading.Thread.Sleep(2000);
+                    }
+                    else if (IsValidCard(hand[pos]))
                         valid = 1;
-                    else if (server.LastMessaged == "draw")
-                        valid = 2;
                     else
+                    {
                         server.SendMessageToOne(player.Id, "You can't play this card.");
+                        System.Threading.Thread.Sleep(2000);
+                    }
                 }
-                System.Threading.Thread.Sleep(2000);
             }
             if (valid == 1)
             {
@@ -253,6 +257,7 @@ namespace ServerApplication
                 server.SendMessageToOther(turn, "Player N°" + (turn + 1) + " draw a card");
                 player.hand.AddInHand(deck, 1, server, player);
             }
+            System.Threading.Thread.Sleep(3000);
         }
         
         public string CardHelp(Card card)
@@ -265,7 +270,7 @@ namespace ServerApplication
                 return ("\t\t(This card allow you to change the sens of the game)");
             else if (card.Color == "Joker")
                 return ("\t\t(This card make the next Player draw 4 cards. She can be used on any other card)");
-            else if (card.Color == "Two")
+            else if (card.Face == "Two")
                 return ("\t\t(This card make the next Player draw 2 cards.)");
             return ("");
         }
@@ -298,6 +303,8 @@ namespace ServerApplication
 
         public void Help(Server server)
         {
+            server.SendMessageToAll("clear");
+            System.Threading.Thread.Sleep(500);
             server.SendMessageToAll("Hello and welcome in the game \"Crazy Eights\". The rules are the followings\n" +
                 "\nThe goal is to be the first player to get rid of all the cards in his hand.\n\n" +
                 "The player who is the first to have no cards left wins the game. The winning player collects from each other player the value of the cards remaining in that player’s hand as follows :\n\n" +
@@ -305,6 +312,16 @@ namespace ServerApplication
                 "This is a 3 set Match. The winner is the one who has least of points at the end of the game.\n" +
                 "Let's begin. " +
                 "Rock and Roll. Go.");
+        }
+
+        bool IsDigitsOnly(string str)
+        {
+            foreach (char c in str)
+            {
+                if (c < '0' || c > '9')
+                    return false;
+            }
+            return true;
         }
 
         private void InitPlayersHand(Deck deck, Player[] allPlayers)

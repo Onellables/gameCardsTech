@@ -1,0 +1,24 @@
+Base Exception Type: ProtoBuf.ProtoException: Invalid field in source data: 0
+   à ProtoBuf.ProtoReader.ReadFieldHeader()
+   à proto_2(Object , ProtoReader )
+   à ProtoBuf.Serializers.CompiledSerializer.ProtoBuf.Serializers.IProtoSerializer.Read(Object value, ProtoReader source)
+   à ProtoBuf.Meta.RuntimeTypeModel.Deserialize(Int32 key, Object value, ProtoReader source)
+   à ProtoBuf.Meta.TypeModel.DeserializeCore(ProtoReader reader, Type type, Object value, Boolean noAutoCreate)
+   à ProtoBuf.Meta.TypeModel.Deserialize(Stream source, Object value, Type type, SerializationContext context)
+   à ProtoBuf.Serializer.Deserialize[T](Stream source)
+   à Crypto`1.Deserialize(Byte[] ByteArray) dans D:\Epitech\cardGames\Serialisation.cs:ligne 41
+   à ServerApplication.Server.MessageReceived(PacketHeader header, Connection connection, Byte[] crypt) dans D:\Epitech\cardGames\Serveur\Program.cs:ligne 70
+   à NetworkCommsDotNet.Tools.PacketTypeHandlerDelegateWrapper`1.Process(PacketHeader packetHeader, Connection connection, Object obj)
+   à NetworkCommsDotNet.NetworkComms.TriggerGlobalPacketHandlers(PacketHeader packetHeader, Connection connection, Object returnObject, Boolean ignoreUnknownPacketTypeOverride)
+
+Stack Trace:    à ProtoBuf.ProtoReader.ReadFieldHeader()
+   à proto_2(Object , ProtoReader )
+   à ProtoBuf.Serializers.CompiledSerializer.ProtoBuf.Serializers.IProtoSerializer.Read(Object value, ProtoReader source)
+   à ProtoBuf.Meta.RuntimeTypeModel.Deserialize(Int32 key, Object value, ProtoReader source)
+   à ProtoBuf.Meta.TypeModel.DeserializeCore(ProtoReader reader, Type type, Object value, Boolean noAutoCreate)
+   à ProtoBuf.Meta.TypeModel.Deserialize(Stream source, Object value, Type type, SerializationContext context)
+   à ProtoBuf.Serializer.Deserialize[T](Stream source)
+   à Crypto`1.Deserialize(Byte[] ByteArray) dans D:\Epitech\cardGames\Serialisation.cs:ligne 41
+   à ServerApplication.Server.MessageReceived(PacketHeader header, Connection connection, Byte[] crypt) dans D:\Epitech\cardGames\Serveur\Program.cs:ligne 70
+   à NetworkCommsDotNet.Tools.PacketTypeHandlerDelegateWrapper`1.Process(PacketHeader packetHeader, Connection connection, Object obj)
+   à NetworkCommsDotNet.NetworkComms.TriggerGlobalPacketHandlers(PacketHeader packetHeader, Connection connection, Object returnObject, Boolean ignoreUnknownPacketTypeOverride)

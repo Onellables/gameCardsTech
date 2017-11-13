@@ -20,6 +20,7 @@ namespace ServerApplication
             id = channel;
         }
 
+
         public Connection Id { get => id; set => id = value; }
         public int Score { get => score; set => score = value; }
     }

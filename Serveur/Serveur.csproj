@@ -48,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Serialisation.cs">
+      <Link>Serialisation.cs</Link>
+    </Compile>
     <Compile Include="Player.cs" />
     <Compile Include="Rules.cs" />
     <Compile Include="Deck.cs" />

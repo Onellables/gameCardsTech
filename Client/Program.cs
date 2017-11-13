@@ -15,12 +15,23 @@ namespace ClientApplication
         public Connection LastPlayerId { get => lastPlayerId; set => lastPlayerId = value; }
         public string LastMessaged { get => lastMessaged; set => lastMessaged = value; }
 
-        static public void MessageReceived(PacketHeader header, Connection connection, string message)
+        static public void MessageReceived(PacketHeader header, Connection connection, byte[] crypt)
         {
+            Crypto<string> Key = Crypto<string>.Deserialize(crypt);
+
+            string message = Key.GetMessage();
+
             if (message == "clear")
                 Console.Clear();
             else
                 Console.WriteLine(message);
+        }
+
+        static private void SendMessage(string serverIP, int serverPort, string message)
+        {
+            Crypto<string> Key = new Crypto<string>(message);
+
+            NetworkComms.SendObject("Message", serverIP, serverPort, Key.Serialize());
         }
 
         static void Main(string[] args)
@@ -45,13 +56,14 @@ namespace ClientApplication
             try
             {
                 Connection.StartListening(ConnectionType.TCP, new System.Net.IPEndPoint(System.Net.IPAddress.Any, 0));
-                NetworkComms.AppendGlobalIncomingPacketHandler<string>("Message", MessageReceived);
-                NetworkComms.SendObject("Message", serverIP, serverPort, "ready");
+                NetworkComms.AppendGlobalIncomingPacketHandler<byte[]>("Message", MessageReceived);
+                SendMessage(serverIP, serverPort, "ready");
             }
             catch
             {
                 Console.WriteLine("You made an Error writing the server IP and Port.");
-                return;
+                System.Threading.Thread.Sleep(2000);
+                System.Environment.Exit(84);
             }
             Console.WriteLine("Type \"Quit\" for quit the Game.\n");
             int game = 0;
@@ -59,7 +71,7 @@ namespace ClientApplication
             {
                 string message = Console.ReadLine();
                 if (message != "Quit")
-                    NetworkComms.SendObject("Message", serverIP, serverPort, message);
+                    SendMessage(serverIP, serverPort, message);
                 else
                     game = 1;
             }

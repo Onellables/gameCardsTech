@@ -22,15 +22,22 @@ namespace ServerApplication
             allPlayers = new Player[4];
         }
 
+        private void Serialise(Connection Id, string message)
+        {
+            Crypto<string> Key = new Crypto<string>(message);
+
+            Id.SendObject("Message", Key.Serialize());
+        }
+
         public void SendMessageToOne(Connection Id, string message)
         {
-            Id.SendObject("Message", message);
+            Serialise(Id, message);
         }
 
         public void SendMessageToAll(string message)
         {
             for (int i = 0; i < 4; ++i)
-                AllPlayers[i].Id.SendObject("Message", message);
+                Serialise(AllPlayers[i].Id, message);
         }
 
         public void SendMessageToOther(int player, string message)
@@ -40,13 +47,13 @@ namespace ServerApplication
                 if (AllPlayers[i] == null)
                     break;
                 if (i != player)
-                    AllPlayers[i].Id.SendObject("Message", message);
+                    Serialise(AllPlayers[i].Id, message);
             }
         }
 
         public void LaunchServer()
         {
-            NetworkComms.AppendGlobalIncomingPacketHandler<string>("Message", MessageReceived);
+            NetworkComms.AppendGlobalIncomingPacketHandler<byte[]>("Message", MessageReceived);
             Connection.StartListening(ConnectionType.TCP, new System.Net.IPEndPoint(System.Net.IPAddress.Any, 0));
             Console.WriteLine("Server listening for TCP connection on:");
             foreach (System.Net.IPEndPoint localEndPoint in Connection.ExistingLocalListenEndPoints(ConnectionType.TCP))
@@ -58,10 +65,12 @@ namespace ServerApplication
             NetworkComms.Shutdown();
         }
 
-        public void MessageReceived(PacketHeader header, Connection connection, string message)
+        public void MessageReceived(PacketHeader header, Connection connection, byte[] crypt)
         {
+            Crypto<string> Key = Crypto<string>.Deserialize(crypt);
+
+            lastMessaged = Key.GetMessage();
             lastPlayerId = connection;
-            LastMessaged = message;
         }
 
         private void WaitPlayer()
@@ -76,11 +85,12 @@ namespace ServerApplication
                     if (j >= i)
                     {
                         AllPlayers[j] = new Player(lastPlayerId);
-                        lastPlayerId = null;
                         SendMessageToOne(AllPlayers[j].Id, 
                             "Hello and welcome to the game\nYou are player n°" + (i + 1) 
                             + "\nWe are waiting for " + (3 - i) + " more players.");
                         SendMessageToOther(i, "We are waiting for " + (3 - i) + " more players.");
+                        if (i != 3)
+                            lastPlayerId = null;
                         ++i;
                     }
                 }
